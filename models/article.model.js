@@ -4,6 +4,12 @@ const findAll = (callback) => {
   const sql = "SELECT * FROM article";
   db.query(sql, callback);
 };
+const finById = (id, callback) => {
+  const sql = "SELECT * FROM article WHERE id = ?";
+  db.query(sql, [id], callback);
+};
+
 module.exports = {
   findAll,
+  finById,
 };
