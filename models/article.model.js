@@ -5,7 +5,7 @@ const findAll = (callback) => {
   db.query(sql, callback);
 };
 const finById = (id, callback) => {
-  const sql = "SELECT * FROM article WHERE id = ?";
+  const sql = "SELECT * FROM article WHERE id =?";
   db.query(sql, [id], callback);
 };
 const create = (
@@ -25,8 +25,37 @@ const create = (
   );
 };
 
+const update = (
+  title,
+  content,
+  created_at,
+  updated_at,
+  category_id,
+  id,
+  callback
+) => {
+  const sql = `UPDATE article SET 
+    title = ?, 
+    content = ?, 
+   created_at= ?, 
+   updated_at = ?, 
+   category_id =?
+    WHERE id =?`;
+  db.query(
+    sql,
+    [title, content, created_at, updated_at, category_id, id],
+    callback
+  );
+};
+
+const deletes = (id, callback) => {
+  const sql = "DELETE FROM article WHERE id = ?";
+  db.query(sql, [id], callback);
+};
 module.exports = {
   findAll,
   finById,
   create,
+  update,
+  deletes,
 };
