@@ -16,7 +16,7 @@ const createUser = async (req, res) => {
     User.create(firstname, lastname, email, hashedPassword, (error, results) => {
    
     if (error) {
-      console.error("erreur de la requête sql", error.message);
+      console.error("erreur", error.message);
       return res.status(500).send("error serveur");
     }
     res.status(201).json({
@@ -34,8 +34,16 @@ const createUser = async (req, res) => {
   res.status(500).send("Erreur serveur interne.");
    }
   }
-
+function getAll (req, res) {
+  User.getAll((error, results) => {
+    if(error){
+      console.error("erreur", error.message);
+      return res.status(500).send("erreur serveur")
+    }
+   res.json(results);
+  })
+}
 module.exports ={
   createUser,
-
+  getAll,
 };
