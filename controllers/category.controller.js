@@ -12,3 +12,4 @@ const getAllCategories = (req, res) => {
 module.exports = {
   getAllCategories,
 };
+};

@@ -1,8 +1,6 @@
-require("dotenv").config();
+require("./config/database");
 const express = require("express");
 const app = express();
-require("./config/database");
-const categoryRouter = require("./routes/category.routes")
 // Middleware pour lire le JSON
 app.use(express.json());
 const likeRoutes = require("./routes/like.routes")
@@ -10,7 +8,12 @@ app.use("/like", likeRoutes)
 app.use("/categories", categoryRouter);
 
 
-// Route de test
+const userRoutes = require("./routes/user.routes");
+app.use("/user", userRoutes);
+const articleRoutes = require("./routes/article.routes");
+app.use("/article", articleRoutes);
+const categoryRouter = require("./routes/category.routes");
+app.use("/categories", categoryRouter);
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
@@ -20,5 +23,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-
