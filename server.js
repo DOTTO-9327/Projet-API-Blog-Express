@@ -3,9 +3,13 @@ const express = require("express");
 const app = express();
 const articleRoutes = require("./routes/article.routes");
 require("./config/database");
+const categoryRouter = require("./routes/category.routes")
 // Middleware pour lire le JSON
 app.use(express.json());
+
 app.use("/article", articleRoutes);
+app.use("/categories", categoryRouter);
+
 // Route de test
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
