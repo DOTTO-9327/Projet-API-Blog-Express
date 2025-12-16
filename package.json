@@ -2,11 +2,10 @@
   "name": "projet-api-blog-express",
   "version": "1.0.0",
   "description": "",
-    "scripts": {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
- 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DOTTO-9327/Projet-API-Blog-Express.git"
@@ -19,6 +18,7 @@
   },
   "homepage": "https://github.com/DOTTO-9327/Projet-API-Blog-Express#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "mysql2": "^3.15.3"
