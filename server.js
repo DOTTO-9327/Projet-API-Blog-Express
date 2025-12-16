@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 // Middleware pour lire le JSON
 app.use(express.json());
+const likeRoutes = require("./routes/like.routes")
+app.use("/like", likeRoutes)
+app.use("/categories", categoryRouter);
+
 
 const userRoutes = require("./routes/user.routes");
 app.use("/user", userRoutes);
