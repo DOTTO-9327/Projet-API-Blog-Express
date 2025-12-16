@@ -4,7 +4,8 @@ const app = express();
 require("./config/database");
 // Middleware pour lire le JSON
 app.use(express.json());
-
+const likeRoutes = require("./routes/like.routes")
+app.use("/like", likeRoutes)
 // Route de test
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
