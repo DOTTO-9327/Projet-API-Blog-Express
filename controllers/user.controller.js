@@ -42,8 +42,25 @@ function getAll (req, res) {
     }
    res.json(results);
   })
+};
+
+
+const getUserById = (req, res) => {
+  const { id } = req.params;
+  User.finById(id, (error, results) => {
+    if (error) {
+      console.error("❌ Erreur lors de la requête SQL:", error.message);
+      return res.status(500).send("Erreur serveur");
+    }
+    if (results.length === 0) {
+      return res.status(404).send("utilisateur non trouvé");
+    }
+    res.json(results[0]);
+  });
+
 }
 module.exports ={
   createUser,
   getAll,
+  getUserById
 };

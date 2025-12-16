@@ -10,7 +10,12 @@ const getAll = (callback) => {
     callback (error, results);
   });
 };
+const finById = (id, callback) => {
+  const sql = "SELECT * FROM user WHERE id =?";
+  db.query(sql, [id], callback);
+};
 module.exports = {
   create,
   getAll,
+  finById
 };

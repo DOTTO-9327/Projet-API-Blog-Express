@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 const likeRoutes = require("./routes/like.routes")
 app.use("/like", likeRoutes)
-app.use("/categories", categoryRouter);
+
 
 
 const userRoutes = require("./routes/user.routes");
