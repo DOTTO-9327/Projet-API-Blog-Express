@@ -8,7 +8,27 @@ const getAllCategories = (req, res) => {
     res.json(results);
   });
 };
+
+const createCategory = (req, res) => {
+    const {
+        name
+    } = req.body;
+
+    Category.create(name, (error, results)=>{
+        if (error) {
+        console.error("❌ Erreur lors de la requête SQL:", error.message);
+        return res.status(500).send("Erreur serveur");
+      }
+       res.status(201).json({
+        name:name 
+       })
+
+    })
+    
+    
+}
+
 // Ajouter autres méthodes du CRUD
 module.exports = {
-  getAllCategories,
+  getAllCategories, createCategory
 };
