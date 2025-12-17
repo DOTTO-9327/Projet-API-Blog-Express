@@ -13,7 +13,8 @@ const createLike = (req, res) => {
 }
 
 const deleteLike = (req, res) =>{
-    const { user_id, article_id } = req.params;
+    const { article_id } = req.params;
+    const {user_id}= req.body;
     Like.remove(user_id, article_id, (error, results) => {
         if (error) {
             console.error("erreur de la requète SQL", error.message)
