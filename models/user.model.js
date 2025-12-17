@@ -32,9 +32,16 @@ const update = (
     callback
   );
 };
+
+const deleteUser = (id, callback) => {
+  const sql = "DELETE FROM article WHERE id = ?";
+  db.query(sql, [id], callback);
+};
+
 module.exports = {
   create,
   getAll,
   finById,
-  update
+  update,
+  deleteUser
 };
