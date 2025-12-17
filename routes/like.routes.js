@@ -1,6 +1,8 @@
 const express = require("express"); 
 const router = express.Router(); 
-const { createLike } = require("../controllers/like.controller"); 
+const { createLike, deleteLike } = require("../controllers/like.controller"); 
 router.post("/", createLike); 
-// router.delete("/:id", deleteLike); 
+router.delete("/:user_id/:article_id", 
+deleteLike); 
+
 module.exports = router; 
