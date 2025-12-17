@@ -2,18 +2,18 @@ require("./config/database");
 const express = require("express");
 const app = express();
 // Middleware pour lire le JSON
-app.use(express.json());
-const likeRoutes = require("./routes/like.routes")
-app.use("/like", likeRoutes)
-app.use("/categories", categoryRouter);
-
-
+const likeRoutes = require("./routes/like.routes");
 const userRoutes = require("./routes/user.routes");
-app.use("/user", userRoutes);
 const articleRoutes = require("./routes/article.routes");
-app.use("/article", articleRoutes);
 const categoryRouter = require("./routes/category.routes");
+
+app.use(express.json());
+
+app.use("/like", likeRoutes);
+app.use("/user", userRoutes);
+app.use("/article", articleRoutes);
 app.use("/categories", categoryRouter);
+
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
