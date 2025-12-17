@@ -14,8 +14,27 @@ const finById = (id, callback) => {
   const sql = "SELECT * FROM user WHERE id =?";
   db.query(sql, [id], callback);
 };
+const update = (
+  firstname,
+  lastname,
+  email,
+  id,
+  callback
+) => {
+  const sql = `UPDATE user SET 
+    firstname = ?, 
+    lastname = ?, 
+   email= ?
+    WHERE id =?`;
+  db.query(
+    sql,
+    [firstname, lastname, email, id],
+    callback
+  );
+};
 module.exports = {
   create,
   getAll,
-  finById
+  finById,
+  update
 };
