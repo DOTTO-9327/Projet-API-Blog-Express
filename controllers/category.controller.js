@@ -24,11 +24,25 @@ const createCategory = (req, res) => {
        })
 
     })
-    
-    
+   
+}
+
+const getCategoryById = (req, res) => {
+  const {id}= req.params;
+  Category.findById(id, (error, results) =>{
+    if (error) {
+        console.error("❌ Erreur lors de la requête SQL:", error.message);
+        return res.status(500).send("Erreur serveur");
+      }
+       res.status(200).json({
+        id: id,
+        name:results[0].name
+  })
+})
+
 }
 
 // Ajouter autres méthodes du CRUD
 module.exports = {
-  getAllCategories, createCategory
+  getAllCategories, createCategory, getCategoryById,
 };
