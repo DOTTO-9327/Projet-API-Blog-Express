@@ -64,29 +64,44 @@ const getUserById = (req, res) => {
 };
 
 const update = (req, res) => {
-    console.log(req.body)
-    const { id } = req.params;
-    const { firstname, lastname, email } = req.body;
-    User.update(firstname, lastname, email, id, (error, results) => {
-      if (error) {
-        console.error("❌ Erreur lors de la requête SQL:", error.message);
-        return res.status(500).send("Erreur serveur");
-      }
-      if (results.affectedRows === 0) {
-        return res.status(404).send("utilisateur non modifié");
-      }
-      res.json({
-        id: parseInt(id),
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-      });
+  console.log(req.body)
+  const { id } = req.params;
+  const { firstname, lastname, email } = req.body;
+  User.update(firstname, lastname, email, id, (error, results) => {
+    if (error) {
+      console.error("❌ Erreur lors de la requête SQL:", error.message);
+      return res.status(500).send("Erreur serveur");
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).send("utilisateur non modifié");
+    }
+    res.json({
+      id: parseInt(id),
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
     });
-  };
+  });
+};
+
+const deleteUser = (req, res) => {
+  const { id } = req.params;
+  User.deleteUser(id, (error, results) => {
+    if (error) {
+      console.error("❌ Erreur lors de la requête SQL:", error.message);
+      return res.status(500).send("Erreur serveur");
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).send("utilisateur non supprimé");
+    }
+    res.status(204).send();
+  });
+};
 
 module.exports = {
   createUser,
   getAll,
   getUserById,
   update,
+  deleteUser
 };
