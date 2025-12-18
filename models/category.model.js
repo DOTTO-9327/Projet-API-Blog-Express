@@ -21,10 +21,16 @@ const update = (name, id, callback) => {
   db.query(sql,[name,id], callback);
 };
 
+const remove = (id, callback) => {
+  const sql = "DELETE FROM category WHERE id = ?";
+  db.query(sql, [id], callback);
+};
+
 // Ajouter autres requêtes du CRUD
 module.exports = {
   findAll,
   create,
   findById,
   update,
+  remove,
 };
