@@ -61,7 +61,21 @@ const updateCategory = (req,res) => {
       });
   });
 };
+
+const deleteCategory = (req, res) => {
+  const { id } = req.params;
+  Category.remove(id, (error, results) => {
+    if (error) {
+      console.error("❌ Erreur lors de la requête SQL:", error.message);
+      return res.status(500).send("Erreur serveur");
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).send("article non supprimée");
+    }
+    res.status(204).send();
+  });
+};
 // Ajouter autres méthodes du CRUD
 module.exports = {
-  getAllCategories, createCategory, getCategoryById, updateCategory,
+  getAllCategories, createCategory, getCategoryById, updateCategory, deleteCategory
 };
