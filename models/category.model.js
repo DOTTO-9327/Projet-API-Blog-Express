@@ -1,4 +1,6 @@
 const db = require("../config/database");
+
+
 const findAll = (callback) => {
   const sql = "SELECT * FROM category";
   db.query(sql, callback);
@@ -14,9 +16,15 @@ const findById = (id, callback) => {
   db.query(sql, [id], callback);
 };
 
+const update = (name, id, callback) => {
+  const sql = "UPDATE category SET name = ? WHERE id = ?";
+  db.query(sql,[name,id], callback);
+};
+
 // Ajouter autres requêtes du CRUD
 module.exports = {
   findAll,
   create,
-  findById
+  findById,
+  update,
 };
